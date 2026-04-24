@@ -2,6 +2,8 @@
 
 A simple and interactive Todo application built using **vanilla JavaScript**, focusing on core frontend concepts like DOM manipulation, event handling, and dynamic UI updates without using any frameworks.
 
+live link: https://todo-mu-murex-78.vercel.app/
+
 ---
 
 ## Overview
@@ -34,15 +36,15 @@ This project demonstrates how to build a fully functional Todo app using plain J
 
 ## Project Structure
 
-
+```
 TODO/
 │── index.html
 │── style.css
 │── script.js
 │── sounds/
-│ ├── completed.wav
-│ └── delete.wav
-
+│   ├── completed.wav
+│   └── delete.wav
+```
 ---
 
 ## How to Run
