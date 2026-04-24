@@ -1,0 +1,261 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #ff4d00;
+  font-family:
+    Impact,
+    Arial Black,
+    sans-serif;
+  overflow-x: hidden;
+}
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 4px solid #ff4d00;
+}
+
+.marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 2rem;
+  animation: scroll 7s linear infinite;
+  padding: 10px 0;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(300%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.title {
+  font-size: 5rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.title span {
+  font-family:
+    Impact,
+    Arial Black,
+    sans-serif;
+  font-size: 5rem;
+}
+
+.input-group {
+  margin: 40px 0;
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 15px;
+  background: #000;
+  border: 3px solid #ff4d00;
+  color: #ff4d00;
+  font-family: monospace;
+  font-size: 1rem;
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(255, 77, 0, 0.5);
+}
+
+button {
+  padding: 15px 25px;
+  background: #ff4d00;
+  color: #000;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+button:hover {
+  transform: scale(1.1) rotate(-2deg);
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  text-transform: uppercase;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 2px solid #ff4d00;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  letter-spacing: 1.5px;
+  line-height: 1.4;
+  font-size: 1.6rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+@keyframes moveParticles {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-100px, -100px);
+  }
+}
+
+.delete-btn {
+  background: transparent;
+  border: 2px solid #ff4d00;
+  color: #ff4d00;
+  padding: 5px 10px;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  transform-origin: center right;
+}
+
+.delete-btn:hover {
+  background: #ff4d00;
+  color: #000;
+  position: absolute;
+  right: 10px;
+  z-index: 1;
+  transform: scale(1.15);
+}
+
+.completed {
+  color: #000;
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+.completed .delete-btn {
+  background: #000;
+  color: #ff4d00;
+  border-color: #000;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+
+  background-image:
+    radial-gradient(#ff4d00 2px, transparent 2px),
+    radial-gradient(#ff4d00 3px, transparent 3px);
+
+  background-size:
+    60px 60px,
+    120px 120px;
+  background-position:
+    0 0,
+    20px 20px;
+
+  opacity: 0.5;
+
+  animation: moveParticles 20s linear infinite;
+
+  pointer-events: none;
+  z-index: -1;
+}
+
+li::before {
+  content: "CLICK IF TASK IS COMPLETED";
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-family: monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+
+  color: #ff4d00;
+
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #ff4d00;
+
+  width: 0;
+  animation:
+    typing 2s steps(30, end) forwards,
+    blink 0.6s step-end infinite;
+
+  z-index: 2;
+}
+li.completed::before {
+  content: "TASK COMPLETED";
+  color: #000;
+  border-right: 2px solid #000;
+
+  width: 0;
+  animation:
+    typing 1s steps(20, end) forwards,
+    blink 0.6s step-end infinite;
+}
+
+li::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: #ff4d00;
+
+  transform: translate(-50%, -50%) scale(0);
+  transform-origin: center;
+
+  transition: transform 0.7s ease;
+
+  z-index: 0;
+}
+li.completed::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.completed::after {
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+li > * {
+  position: relative;
+  z-index: 1;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
